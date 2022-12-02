@@ -156,8 +156,12 @@ text-align: center;
 
             let maxNumber = 789
 
+            let intervalFireworks;
+
             $('#random_btn').click(function(e){
                 e.preventDefault();
+                clearInterval(intervalFireworks);
+                $('#random_btn').hide()
                 generateNumber();
                 intervals = setInterval(generateNumber,10);
                 
@@ -171,6 +175,7 @@ text-align: center;
                     clearInterval(intervals)
                     countInterval = 0;
                     fireworks();
+                    $('#random_btn').show()
                 }
             }
             
@@ -189,11 +194,11 @@ text-align: center;
                 return Math.random() * (max - min) + min;
                 }
 
-                var interval = setInterval(function() {
+                intervalFireworks = setInterval(function() {
                 var timeLeft = animationEnd - Date.now();
 
                 if (timeLeft <= 0) {
-                    return clearInterval(interval);
+                    return clearInterval(intervalFireworks);
                 }
 
                 var particleCount = 50 * (timeLeft / duration);
